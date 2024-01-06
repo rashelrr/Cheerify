@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var newAffirmation: String = ""
 
     var backButton : some View { Button(action: {
             self.presentationMode.wrappedValue.dismiss()
@@ -38,6 +39,8 @@ struct AddView: View {
                         .foregroundColor(Color(red: 63/255, green: 65/255, blue: 78/255))
                 }
                 Spacer()
+                TextField("Enter your new affirmation... ", text: $newAffirmation)
+                    .multilineTextAlignment(.center)
                 Spacer()
             }
         }
