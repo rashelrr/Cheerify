@@ -12,31 +12,39 @@ struct AddView: View {
     @State var newAffirmation: String = ""
 
     var backButton : some View { Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "house")
-                    .frame(width: 50, height: 50)
-                    .background(Color(red: 196/255, green: 197/255, blue: 202/255))
-                    .clipShape(Circle())
-                    .font(.title3)
-                    .foregroundColor(Color.white)
-                    .padding(.top, 10)
-            }
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "house")
+                .frame(width: 50, height: 50)
+                .background(Color(red: 196/255, green: 197/255, blue: 202/255))
+                .clipShape(Circle())
+                .font(.title3)
+                .foregroundColor(Color.white)
+                .padding(.top, 10)
         }
+    }
     var body: some View {
         ZStack {
             Color(red: 242/255, green: 237/255, blue: 228/255)
                 .ignoresSafeArea()
             VStack {
-                VStack {
-                    Text("Cheerify")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color(red: 63/255, green: 65/255, blue: 78/255))
-                    Text("daily affirmation companion")
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color(red: 63/255, green: 65/255, blue: 78/255))
+                HStack {
+                    backButton
+                        .padding(.leading, 10)
+                        .padding(.trailing, -60)
+                    Spacer()
+                
+                    VStack {
+                        Text("Cheerify")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color(red: 63/255, green: 65/255, blue: 78/255))
+                        Text("daily affirmation companion")
+                            .font(.footnote)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color(red: 63/255, green: 65/255, blue: 78/255))
+                    }
+                    Spacer()
                 }
                 Spacer()
                 TextField("Enter your new affirmation... ", text: $newAffirmation)

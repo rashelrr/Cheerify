@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var affirmation: String = "Get started by pressing the refresh button..."
-    @State private var selection: String? = nil
     var body: some View {
         NavigationView {
             ZStack {
@@ -17,21 +16,18 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 VStack {
                     HStack {
-                        NavigationLink(destination: MenuView(), tag: "Menu", selection: $selection) {
-                            // Menu button
-                            Button {
-                                selection = "Menu"
-                                print("Menu Button")
-                            } label: {
-                                Image(systemName: "line.3.horizontal")
-                                    .frame(width: 50, height: 50)
-                                    .background(Color(red: 196/255, green: 197/255, blue: 202/255))
-                                    .clipShape(Circle())
-                                    .font(.title)
-                                    .foregroundColor(Color.white)
-                            }
-                            .padding(.leading, 10)
+                        // Menu button
+                        NavigationLink {
+                            MenuView()
+                        } label: {
+                            Image(systemName: "line.3.horizontal")
+                                .frame(width: 50, height: 50)
+                                .background(Color(red: 196/255, green: 197/255, blue: 202/255))
+                                .clipShape(Circle())
+                                .font(.title)
+                                .foregroundColor(Color.white)
                         }
+                        .padding(.leading, 10)
                         
                         Spacer()
                         
@@ -48,20 +44,19 @@ struct ContentView: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: AddView(), tag: "Add", selection: $selection) {
-                            // "Add" affirmation button
-                            Button {
-                                selection = "Add"
-                            } label: {
-                                Image(systemName: "plus")
-                                    .frame(width: 50, height: 50)
-                                    .background(Color(red: 196/255, green: 197/255, blue: 202/255))
-                                    .clipShape(Circle())
-                                    .font(.title)
-                                    .foregroundColor(Color.white)
-                            }
-                            .padding(.trailing, 10)
+                        // Add button
+                        NavigationLink {
+                            AddView()
+                        } label: {
+                            Image(systemName: "plus")
+                                .frame(width: 50, height: 50)
+                                .background(Color(red: 196/255, green: 197/255, blue: 202/255))
+                                .clipShape(Circle())
+                                .font(.title)
+                                .foregroundColor(Color.white)
                         }
+                        .padding(.trailing, 10)
+                        
                     }
                     
                     Spacer()
@@ -117,6 +112,7 @@ struct ContentView: View {
                     
                 }
             }
+            .navigationBarHidden(true)
         }
     }
 }
