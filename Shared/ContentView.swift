@@ -9,32 +9,29 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var affirmation: String = "Get started by pressing the refresh button..."
-    @State private var path = NavigationPath()
+    @State private var selection: String? = nil
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationView {
             ZStack {
                 Color(red: 242/255, green: 237/255, blue: 228/255)
                     .ignoresSafeArea()
                 VStack {
                     HStack {
-                        // Menu button
-                        Button {
-                            path.append("MenuView")
-                            print("Menu Button")
-                        } label: {
-                            Image(systemName: "line.3.horizontal")
-                                .frame(width: 50, height: 50)
-                                .background(Color(red: 196/255, green: 197/255, blue: 202/255))
-                                .clipShape(Circle())
-                                .font(.title)
-                                .foregroundColor(Color.white)
-                        }
-                        .navigationDestination(for: String.self) { view in
-                            if view == "MenuView" {
-                                MenuView()
-                                }
+                        NavigationLink(destination: MenuView(), tag: "Menu", selection: $selection) {
+                            // Menu button
+                            Button {
+                                selection = "Menu"
+                                print("Menu Button")
+                            } label: {
+                                Image(systemName: "line.3.horizontal")
+                                    .frame(width: 50, height: 50)
+                                    .background(Color(red: 196/255, green: 197/255, blue: 202/255))
+                                    .clipShape(Circle())
+                                    .font(.title)
+                                    .foregroundColor(Color.white)
                             }
-                        .padding(.leading, 10)
+                            .padding(.leading, 10)
+                        }
                         
                         Spacer()
                         
@@ -51,24 +48,20 @@ struct ContentView: View {
                         
                         Spacer()
                         
-                        // "Add" affirmation button
-                        Button {
-                            path.append("AddView")
-                            print("Add Button")
-                        } label: {
-                            Image(systemName: "plus")
-                                .frame(width: 50, height: 50)
-                                .background(Color(red: 196/255, green: 197/255, blue: 202/255))
-                                .clipShape(Circle())
-                                .font(.title)
-                                .foregroundColor(Color.white)
-                        }
-                        .navigationDestination(for: String.self) { view in
-                            if view == "AddView" {
-                                AddView()
-                                }
+                        NavigationLink(destination: AddView(), tag: "Add", selection: $selection) {
+                            // "Add" affirmation button
+                            Button {
+                                selection = "Add"
+                            } label: {
+                                Image(systemName: "plus")
+                                    .frame(width: 50, height: 50)
+                                    .background(Color(red: 196/255, green: 197/255, blue: 202/255))
+                                    .clipShape(Circle())
+                                    .font(.title)
+                                    .foregroundColor(Color.white)
                             }
-                        .padding(.trailing, 10)
+                            .padding(.trailing, 10)
+                        }
                     }
                     
                     Spacer()
